@@ -225,6 +225,8 @@ def draw():
     y += 42
 
     # features + numbers
+    # the three features carry the day's lead stories; their kickers name the
+    # beat so a reader at 300 px still knows what each one is about
     feat_h = 184
     num_w = 196
     fx1 = x1 - num_w - 10
@@ -237,7 +239,10 @@ def draw():
         bh = 78
         scene(d, (cx0 + 1, y + 1), s['topic'], cw - 2, bh)
         lab = '%d %s' % (s['n'], s['place'])
-        fl = fit(d, lab, SANSB, 10, cw - 26)
+        kick = s['topic']
+        d.text((cx0 + cw - 7 - d.textlength(kick, font=f(SANSB, 9)), y + 4), kick,
+               font=f(SANSB, 9), fill=(255, 255, 255))
+        fl = fit(d, lab, SANSB, 10, cw - 60)
         lw = d.textlength(lab, font=fl) + 10
         d.rectangle([cx0 + 1, y + 1, cx0 + 1 + lw, y + 15], fill=(18, 18, 20))
         d.text((cx0 + 6, y + 4), lab, font=fl, fill=(255, 255, 255))
